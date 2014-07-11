@@ -19,3 +19,4 @@ bin
 .gradle
 test-output/
 build
+*.orig
