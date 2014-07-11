@@ -22,10 +22,12 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 
+import org.thiesen.ttbin.entries.GPSEntry;
 import org.thiesen.ttbin.entries.HeaderEntry;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 public class TTBinEntries implements Iterable<TTBinEntry> {
 
@@ -82,5 +84,9 @@ public class TTBinEntries implements Iterable<TTBinEntry> {
 
 	public HeaderEntry getHeader() {
 		return (HeaderEntry) entries.get( 0 );
+	}
+
+	public <T extends TTBinEntry> Iterable<T> allOf(Class<T> type) {
+		return Iterables.filter( entries , type );
 	}
 }

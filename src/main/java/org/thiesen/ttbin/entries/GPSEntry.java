@@ -50,6 +50,7 @@ public class GPSEntry implements TTBinEntry {
 			@Override
 			public GPSEntry doApply(InputStream input) throws IOException {
 				final ByteBuffer buffer = ByteUtils.readBytes( input, 27 );
+				// One of the skipped elements could be elevation
 				
 				final int latitude = buffer.getInt();
 				final int longitude = buffer.getInt();
