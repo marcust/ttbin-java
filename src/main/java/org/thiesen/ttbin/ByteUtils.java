@@ -16,24 +16,19 @@
 package org.thiesen.ttbin;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-
-public class TTBinReaderTest {
+public final class ByteUtils {
 	
-	@Test
-	public void readDemoFile() throws IOException {
-		
-		final TTBinEntries file = TTBinEntries.read( TTBinReaderTest.class.getClassLoader().getResourceAsStream( "Running_06-27-50.ttbin") );
-		Assert.assertNotNull(file);
-		Assert.assertNotNull( file.getHeader() );
-		
-		
-		
-		
+	private ByteUtils() {
+		// Util.
 	}
 	
-
+	public static ByteBuffer readBytes( final InputStream in, final int length ) throws IOException {
+		final byte[] buffer = new byte[ length ];
+		in.read( buffer );
+		return ByteBuffer.wrap( buffer ).asReadOnlyBuffer().order( ByteOrder.LITTLE_ENDIAN );
+	}
 }

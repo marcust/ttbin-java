@@ -13,27 +13,32 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TTBinReader.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thiesen.ttbin;
+package org.thiesen.ttbin.types;
 
-import java.io.IOException;
+public enum Activity {
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-
-public class TTBinReaderTest {
+	RUN( 0x00 ),
+	CYCLE( 0x01 ),
+	SWIM( 0x02 ),
+	TREADMILL( 0x07 );
 	
-	@Test
-	public void readDemoFile() throws IOException {
-		
-		final TTBinEntries file = TTBinEntries.read( TTBinReaderTest.class.getClassLoader().getResourceAsStream( "Running_06-27-50.ttbin") );
-		Assert.assertNotNull(file);
-		Assert.assertNotNull( file.getHeader() );
-		
-		
-		
-		
+	private final int id;
+	
+	private Activity( int id ) {
+		this.id = id;
+	}
+
+	public static Activity parse(int activity) {
+		for ( final Activity a : values() ) {
+			if ( activity == a.id ) {
+				return a;
+			}
+		}
+
+		throw new IllegalArgumentException("Activity 0x" + Integer.toString( activity, 16).toUpperCase() + " not supported.");
 	}
 	
-
+	
+	
+	
 }

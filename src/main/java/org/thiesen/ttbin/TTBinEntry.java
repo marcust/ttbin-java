@@ -15,25 +15,6 @@
  */
 package org.thiesen.ttbin;
 
-import java.io.IOException;
-
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-
-public class TTBinReaderTest {
-	
-	@Test
-	public void readDemoFile() throws IOException {
-		
-		final TTBinEntries file = TTBinEntries.read( TTBinReaderTest.class.getClassLoader().getResourceAsStream( "Running_06-27-50.ttbin") );
-		Assert.assertNotNull(file);
-		Assert.assertNotNull( file.getHeader() );
-		
-		
-		
-		
-	}
-	
+public interface TTBinEntry {
 
 }
