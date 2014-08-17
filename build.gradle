@@ -13,4 +13,10 @@ dependencies {
     testCompile 'org.testng:testng:6.8.1'
 }
 
+jar {
+    manifest {
+        attributes("Main-Class": "org.thiesen.ttbin.utils.TTBin2Gpx")
+    }
+}
+
 test.useTestNG()
