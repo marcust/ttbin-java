@@ -19,4 +19,13 @@ jar {
     }
 }
 
+task fatJar(type: Jar) {
+     manifest {
+                   attributes("Main-Class": "org.thiesen.ttbin.utils.TTBin2Gpx")
+   }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 test.useTestNG()
